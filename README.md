@@ -3,6 +3,9 @@
 ## 特点
 springboot starter方式，加入依赖，自动配置，所有功能都可自主选择是否使用
 
+## 整合demo
+[shiro-web-demo](https://www.runoob.com)
+
 ## 已实现功能
 
 - 用户名，密码校验。可自定义密码加密算法，MD5，SHA-256，可自定义加密盐 salt
