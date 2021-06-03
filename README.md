@@ -4,7 +4,7 @@
 springboot starter方式，加入依赖，自动配置，所有功能都可自主选择是否使用
 
 ## 整合demo
-[shiro-web-demo](https://www.runoob.com)
+[shiro-web-demo](https://github.com/mapengpeng/shiro-web-demo)
 
 ## 已实现功能
 
