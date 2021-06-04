@@ -1,7 +1,7 @@
 # mapp-shiro-spring-boot-starter
 
-## 特点
-springboot starter方式，加入依赖，自动配置，所有功能都可自主选择是否使用
+## 简介
+springboot，shiro，单点登录，缓存，动态权限
 
 ## 整合demo
 [shiro-web-demo](https://github.com/mapengpeng/shiro-web-demo)
