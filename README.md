@@ -1,7 +1,7 @@
 # mapp-shiro-spring-boot-starter
 
 ## 简介
-springboot，shiro，单点登录，缓存，动态权限。自动装配，所有功能都可自主控制是否启用。
+springboot，shiro，单点登录，缓存，动态权限。jar包引入后，即可自动装配，所有功能都可自主控制是否启用，无需写代码！
 
 ## 整合demo
 [shiro-web-demo](https://github.com/mapengpeng/shiro-web-demo)
