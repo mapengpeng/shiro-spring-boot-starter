@@ -4,10 +4,12 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * 默认session监听器
  */
+@Component
 public class DefaultSessionListener implements SessionListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultSessionListener.class);

@@ -1,9 +1,11 @@
 package com.mapp.shiro.config;
 
+import com.mapp.shiro.listener.AuthListener;
 import com.mapp.shiro.listener.AuthListenerManager;
 import com.mapp.shiro.listener.DefaultShiroAuthenticationListener;
 import com.mapp.shiro.util.RedisUtil;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
+import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -12,12 +14,15 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.List;
 
 
 /**
@@ -31,6 +36,10 @@ public class ShiroAutoConfigure {
 
     private ShiroProperties shiroProperties;
     private ShiroConfig shiroConfig;
+    @Autowired
+    private List<AuthListener> authListenerList;
+    @Autowired
+    private List<SessionListener> sessionListenerList;
 
     public ShiroAutoConfigure(ShiroProperties shiroProperties, CustomConfig customConfig, RedisTemplate redisTemplate) {
         RedisUtil.setRedisTemplate(redisTemplate);
@@ -50,7 +59,7 @@ public class ShiroAutoConfigure {
 
         // 设置登录监听器
         AuthListenerManager authListenerManager = new AuthListenerManager();
-        authListenerManager.setAuthListeners(shiroConfig.getAuthListeners());
+        authListenerManager.setAuthListeners(authListenerList);
         DefaultShiroAuthenticationListener shiroAuthenticationListener = new DefaultShiroAuthenticationListener(authListenerManager);
         shiroAuthenticationListener.setCacheManager(shiroConfig.getCacheManager());
         authenticator.getAuthenticationListeners().add(shiroAuthenticationListener);
@@ -67,7 +76,7 @@ public class ShiroAutoConfigure {
         sessionManager.setSessionValidationInterval(shiroProperties.getSessionValidInterval() * ShiroConstants.MILLIS_PER_MINUTE);
         sessionManager.setSessionDAO(sessionDAO());
         // 默认session监听器
-        sessionManager.getSessionListeners().addAll(shiroConfig.getSessionListeners());
+        sessionManager.getSessionListeners().addAll(sessionListenerList);
         return sessionManager;
     }
 

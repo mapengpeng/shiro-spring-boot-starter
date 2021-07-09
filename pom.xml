@@ -5,7 +5,7 @@
     <groupId>com.mapp</groupId>
     <artifactId>mapp-shiro-spring-boot-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mapp-shiro-spring-boot-starter</name>
+            <name>mapp-shiro-spring-boot-starter</name>
     <description>mapp-shiro-spring-boot-starter</description>
     <packaging>jar</packaging>
 
@@ -58,6 +58,12 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-cas</artifactId>
             <version>1.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

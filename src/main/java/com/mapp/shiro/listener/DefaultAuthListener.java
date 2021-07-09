@@ -7,12 +7,14 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
+import org.springframework.stereotype.Component;
 
 /**
  * 默认认证监听器
  *
  * @author mapp
  */
+@Component
 public class DefaultAuthListener implements AuthListener {
 
     private CacheManager cacheManager;

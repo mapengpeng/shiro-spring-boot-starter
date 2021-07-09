@@ -44,21 +44,4 @@ public interface CustomConfig {
     default Map<String, String> getFilterChainDefinition() {
         return null;
     }
-
-    /**
-     * 获取 session监听器
-     * @return
-     */
-    default List<SessionListener> getSessionListeners() {
-        return null;
-    }
-
-    /**
-     * 获取 认证监听器
-     * @return
-     */
-    default List<AuthListener> getAuthListeners() {
-        return null;
-    }
-
 }

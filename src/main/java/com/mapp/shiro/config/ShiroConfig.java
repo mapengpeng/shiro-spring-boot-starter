@@ -14,8 +14,6 @@ import com.mapp.shiro.provider.UserDetailService;
 import com.mapp.shiro.realm.ShiroCasRealm;
 import com.mapp.shiro.realm.UserPasswordReam;
 import com.mapp.shiro.util.RedisUtil;
-import com.mapp.shiro.util.ShiroUtil;
-import com.mapp.shiro.util.SpringContextHelper;
 import lombok.Getter;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
@@ -37,6 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * shiro配置
  */
 @Getter
+@SuppressWarnings("all")
 public class ShiroConfig {
 
     private ShiroProperties shiroProperties;
@@ -70,8 +69,6 @@ public class ShiroConfig {
         loadFilters();
 
         loadFilterChainDefinitionMap();
-
-        loadListeners();
 
         loadRealms();
 
@@ -201,18 +198,6 @@ public class ShiroConfig {
             this.authorityService = getCustomConfig().getAuthorityService();
         } else {
             this.authorityService = new DefaultAuthorityService();
-        }
-    }
-
-    private void loadListeners() {
-        this.sessionListeners.add(new DefaultSessionListener());
-        this.authListeners.add(new DefaultAuthListener());
-
-        if (getCustomConfig() != null && CollUtil.isNotEmpty(getCustomConfig().getSessionListeners())) {
-            this.sessionListeners.addAll(getCustomConfig().getSessionListeners());
-        }
-        if (getCustomConfig() != null && CollUtil.isNotEmpty(getCustomConfig().getAuthListeners())) {
-            this.authListeners.addAll(getCustomConfig().getAuthListeners());
         }
     }
 
